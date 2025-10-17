@@ -1,0 +1,272 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 10px;
+  background-color: #f0f0f0;
+}
+
+.game {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .game {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    gap: 20px;
+  }
+}
+
+.game-board {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 320px;
+}
+
+@media (max-width: 480px) {
+  .game-board {
+    padding: 15px;
+    max-width: 100%;
+  }
+}
+
+.status {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  padding: 15px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 480px) {
+  .status {
+    font-size: 18px;
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+}
+
+.status-playing {
+  color: #2c3e50;
+  background-color: #ecf0f1;
+}
+
+.status-winner {
+  color: #27ae60;
+  background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+  animation: celebrate 0.5s ease-in-out;
+}
+
+.status-draw {
+  color: #e67e22;
+  background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes celebrate {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.board-row {
+  display: flex;
+  justify-content: center;
+}
+
+.square {
+  background: #fff;
+  border: 3px solid #bdc3c7;
+  font-size: 48px;
+  font-weight: bold;
+  width: 80px;
+  height: 80px;
+  margin: -1.5px;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #2c3e50;
+}
+
+/* Tamaño de cuadros en móviles */
+@media (max-width: 480px) {
+  .square {
+    width: 70px;
+    height: 70px;
+    font-size: 36px;
+    border: 2px solid #bdc3c7;
+  }
+}
+
+@media (max-width: 360px) {
+  .square {
+    width: 60px;
+    height: 60px;
+    font-size: 32px;
+  }
+}
+
+.square:hover:not(.winning) {
+  background: #ecf0f1;
+  transform: scale(1.05);
+  border-color: #3498db;
+}
+
+.square:active {
+  transform: scale(0.95);
+}
+
+.square.winning {
+  background: linear-gradient(135deg, #a8e6cf 0%, #78d6a8 100%);
+  color: #27ae60;
+  animation: pulse 0.6s ease-in-out;
+  border-color: #27ae60;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.square:focus {
+  outline: none;
+  background: #e0e0e0;
+}
+
+.reset-button {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 480px) {
+  .reset-button {
+    font-size: 16px;
+    padding: 10px;
+  }
+}
+
+.reset-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.reset-button:active {
+  transform: translateY(0);
+}
+
+.game-info {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 250px;
+  width: 100%;
+  max-width: 320px;
+}
+
+@media (max-width: 768px) {
+  .game-info {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .game-info {
+    padding: 15px;
+  }
+}
+
+.game-info h3 {
+  margin-top: 0;
+  color: #2c3e50;
+  font-size: 20px;
+  border-bottom: 2px solid #ecf0f1;
+  padding-bottom: 10px;
+}
+
+@media (max-width: 480px) {
+  .game-info h3 {
+    font-size: 18px;
+  }
+}
+
+.game-info ol {
+  padding-left: 20px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.game-info li {
+  margin-bottom: 10px;
+}
+
+.game-info button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  width: 100%;
+  text-align: left;
+}
+
+@media (max-width: 480px) {
+  .game-info button {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+}
+
+.game-info button:hover {
+  background-color: #2980b9;
+  transform: translateX(5px);
+}
+
+.game-info button:active {
+  transform: translateX(0);
+}
+
+.game-info button.current-move {
+  background-color: #27ae60;
+  font-weight: bold;
+}
+
+.game-info button.current-move:hover {
+  background-color: #229954;
+}
